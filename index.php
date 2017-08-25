@@ -62,7 +62,23 @@ if(is_array($data['events'])){
         if ($event['type'] == 'message')
         {
             if($event['message']['type'] == 'text')
+
             {
+
+if(
+    $event['message']['type'] == 'image' or
+    $event['message']['type'] == 'video' or
+    $event['message']['type'] == 'audio' or
+    $event['message']['type'] == 'file'
+){
+    $basePath  = $request->getUri()->getBaseUrl();
+    $contentURL  = $basePath."/content/".$event['message']['id'];
+    $contentType = ucfirst($event['message']['type']);
+    $result = $bot->replyText($event['replyToken'],
+        $contentType. " yang kamu kirim bisa diakses dari link:\n " . $contentURL);
+
+    return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+}
                 // send same message as reply to user
                 $result = $bot->replyText($event['replyToken'], $event['message']['text']);
 
@@ -84,5 +100,18 @@ $app->get('/profile', function($req, $res) use ($bot)
     $result = $bot->getProfile($userId);
    
     return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+});
+
+$app->get('/content/{messageId}', function($req, $res) use ($bot)
+{
+    // get message content
+    $route      = $req->getAttribute('route');
+    $messageId = $route->getArgument('messageId');
+    $result = $bot->getMessageContent($messageId);
+
+    // set response
+    $res->write($result->getRawBody());
+
+    return $res->withHeader('Content-Type', $result->getHeader('Content-Type'));
 });
 $app->run();
