@@ -65,6 +65,17 @@ if(is_array($data['events'])){
 
             {
 
+
+                // send same message as reply to user
+                $result = $bot->replyText($event['replyToken'], $event['message']['text']);
+
+                // or we can use replyMessage() instead to send reply message
+                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
+                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
+
+                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+            }
+
 if(
     $event['message']['type'] == 'image' or
     $event['message']['type'] == 'video' or
@@ -79,15 +90,6 @@ if(
 
     return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 }
-                // send same message as reply to user
-                $result = $bot->replyText($event['replyToken'], $event['message']['text']);
-
-                // or we can use replyMessage() instead to send reply message
-                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
-                // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
-
-                return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
-            }
         }
     }
 }
