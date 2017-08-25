@@ -77,13 +77,12 @@ if(is_array($data['events'])){
 }
 });
 
-$app->get('/profile/{userId}', function($req, $res) use ($bot)
+$app->get('/profile', function($req, $res) use ($bot)
 {
     // get user profile
-    $route  = $req->getAttribute('route');
-    $userId = $route->getArgument('userId');
+    $userId = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
     $result = $bot->getProfile($userId);
-             
+   
     return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 });
 $app->run();
