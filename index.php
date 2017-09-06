@@ -76,14 +76,14 @@ if($pesan_datang == "rumah sakit"){
 	
 	if(is_array($data['events'])){
 		
-    foreach ($data['events'] as $event)
+    foreach ($data['events'] as $event2)
     {		
-        if ($event['type'] == 'message')
+        if ($event2['type'] == 'message')
         {
-            if($event['message']['type'] == 'text')
+            if($event2['message']['type'] == 'text')
             {
 	
-				$result = $bot->replyText($event['replyToken'], "Bisa luuuuuuu");
+				$result = $bot->replyText($event2['replyToken'], "Bisa luuuuuuu");
 				return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 }
