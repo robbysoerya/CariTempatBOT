@@ -16,8 +16,9 @@ $channel_access_token = "4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX
 $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
 
 // inisiasi objek bot
-$bot = new LINEBot($channel_access_token, $channel_secret);
-$replyToken = $bot->parseEvents()[0]['replyToken'];
+$httpClient = new CurlHTTPClient($channel_access_token);
+$bot = new LINEBot($httpClient, ['channelSecret' => $channel_secret]);
+
 $configs =  [
     'settings' => ['displayErrorDetails' => true],
 ];
@@ -53,7 +54,6 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
     }
 
     // kode aplikasi nanti disini
-
 	$data = json_decode($body, true);
 if(is_array($data['events'])){
     foreach ($data['events'] as $event)
