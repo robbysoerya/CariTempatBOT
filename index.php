@@ -103,10 +103,11 @@ if(is_array($data['events'])){
 
 $result2 =  json_encode($balas);
 
-file_put_contents('./balasan.json',$result);
+file_put_contents('./balasan2.json',$result);
 
 
-$bot->replyMessage($balas);
+$result3 = $bot->replyMessage($balas);
+return $response->withJson($result3->getJSONDecodedBody(), $result3->getHTTPStatus());
 
 }
 );
