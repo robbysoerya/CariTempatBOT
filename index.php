@@ -46,7 +46,7 @@ if(is_array($data['events'])){
     {		
         if ($event['type'] == 'message')
         {
-            if($event['message']['type'] == 'text')
+            if($event['message']['type'] == 'location')
             {
 				$latitude = $event['message']['latitude'];
 				$longitude = $event['message']['longitude'];
