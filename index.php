@@ -1,10 +1,10 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-require_once('./line_class.php');
 use \LINE\LINEBot;
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use \LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\TextMessageBuilder;
+use \LINE\LINEBot\MessageBuilder\LocationMessageBuilder;
 use \LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
 use \LINE\LINEBot\SignatureValidator as SignatureValidator;
 
@@ -85,7 +85,8 @@ if(is_array($data['events'])){
             {
 				if($pesan_masuk == "rumah sakit"){
 					
-					$result = $bot->replyMessage($event2['replyToken'], 'location','Halo','〒150-0002 東京都渋谷区渋谷２丁目２１−１',35.65910807942215,139.70372892916203);
+					$locationMessageBuilder = new LocationMessageBuilder('Halo','〒150-0002 東京都渋谷区渋谷２丁目２１−１',35.65910807942215,139.70372892916203);
+					$result = $bot->replyMessage($event2['replyToken'], $locationMessageBuilder);
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
