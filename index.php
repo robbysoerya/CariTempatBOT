@@ -76,6 +76,6 @@ if(is_array($data['events'])){
 }
 }
 );
-file_put_contents('./balasan.txt',$data);
+file_put_contents('./balasan.json',$body);
 
 $app->run();
