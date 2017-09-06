@@ -42,7 +42,9 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
     // get request body and line signature header
     $body        = file_get_contents('php://input');
     $request = file_get_contents('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-6.357712,106.842937&radius=5000&type=hospital&keyword=rumah+sakit&key=AIzaSyC7jWhmMD7bR6JmfG9B8qwbSVapdDoze3o'); 
-
+	$lokasi = json_decode($request,true);
+	file_put_contents('./balasan2.json',$request);
+	
     // kode aplikasi nanti disini
 	$data = json_decode($body, true);
 	file_put_contents('./balasan.json',$body);
