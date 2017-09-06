@@ -87,7 +87,7 @@ if(is_array($data['events'])){
 					
 					
 					$outputText = new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("Eiffel Tower", "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France", 48.858328, 2.294750);
-					$response = $bot->replyMessage($event->getReplyToken(), $outputText);
+					$result = $bot->replyMessage($event2['replyToken'], $outputText);
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
