@@ -90,7 +90,7 @@ if($message['type']=='text')
 {
 	if($pesan_datang == "rumah sakit"){
 		
-	$request = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$geolocation.'&radius=5000&type=hospital&keyword=rumah+sakit&key=AIzaSyC7jWhmMD7bR6JmfG9B8qwbSVapdDoze3o'; 
+	$request = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-6.357712,106.842937&radius=5000&type=hospital&keyword=rumah+sakit&key=AIzaSyC7jWhmMD7bR6JmfG9B8qwbSVapdDoze3o'; 
 	$file_contents = file_get_contents($request);
 	
 	$lokasi = json_decode($file_contents);
