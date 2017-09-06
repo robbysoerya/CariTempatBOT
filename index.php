@@ -64,15 +64,30 @@ if(is_array($data['events'])){
             if($event['message']['type'] == 'text')
 
             {
+				
+		$get_sub = array();
+		$aa = array(
                 // send same message as reply to user
-         
-                $result = $bot.replyLocation($event['replyToken'], {
-  title: 'my location',
-  address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
-  latitude: 35.65910807942215,
-  longitude: 139.70372892916203,
-});
+  'title' => 'my location',
+  'address' => '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
+  'latitude' => 35.65910807942215,
+  'longitude' => 139.70372892916203,
+);
 
+array_push($get_sub,$aa);
+		
+		$get_sub[] = array(
+					
+					 'type' => 'text',
+					 'text' => 'Lokasi diterima'
+		);
+		
+		$result = array(
+					'replyToken' 	=> $replyToken,														
+					'messages' 		=> $get_sub
+				 );	
+				
+	}
                 // or we can use replyMessage() instead to send reply message
          
                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
@@ -81,7 +96,7 @@ if(is_array($data['events'])){
             }
 
 if(
-    $event['message']['type'] == 'location'
+    $event['message']['type'] == 'image'
 ){
     $basePath  = $request->getUri()->getBaseUrl();
     $contentURL  = $basePath."/content/".$event['message']['id'];
@@ -93,7 +108,6 @@ if(
 }
         }
     }
-}
 });
 
 $app->get('/profile', function($req, $res) use ($bot)
