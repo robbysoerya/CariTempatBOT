@@ -55,6 +55,7 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
 
     // kode aplikasi nanti disini
 	$data = json_decode($body, true);
+	file_put_contents('./balasan.json',$body);
 if(is_array($data['events'])){
     foreach ($data['events'] as $event)
     {
@@ -76,6 +77,5 @@ if(is_array($data['events'])){
 }
 }
 );
-file_put_contents('./balasan.json',$body);
 
 $app->run();
