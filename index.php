@@ -100,6 +100,14 @@ if(is_array($data['events'])){
 }
 }
 }
+
+$result2 =  json_encode($balas);
+
+file_put_contents('./balasan.json',$result);
+
+
+$bot->replyMessage($balas);
+
 }
 );
 
