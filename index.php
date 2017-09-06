@@ -71,12 +71,8 @@ if(is_array($data['events'])){
     }
 }
 	
-if($message['type']=='text')
-{
-	if($pesan_datang == "rumah sakit"){
-		
-	$lokasi = json_decode($request,true);
-	file_put_contents('./balasan2.json',$request);
+
+if($pesan_datang == "rumah sakit"){
 	
 	if(is_array($lokasi['results'])){
     foreach ($lokasi['results'] as $results)
@@ -105,10 +101,6 @@ if($message['type']=='text')
 }
 
 }
-}
-    
-
-	
 }
 $result2 =  json_encode($balas);
 
