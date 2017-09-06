@@ -59,16 +59,16 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
 
 if(is_array($data['events'])){
     foreach ($data['events'] as $event)
-    {
-		$latitude = $event['message']['latitude']
-		$longitude = $event['message']['longitude']
-		
+    {		
         if ($event['type'] == 'message')
         {
             if($event['message']['type'] == 'location')
             {
+				$latitude = $event['message']['latitude'];
+				$longitude = $event['message']['longitude'];
+
                 // send same message as reply to user
-                $result = $bot->replyText($event['replyToken'], "Lokasi ditemukan $latitude $longitude");
+                $result = $bot->replyText($event['replyToken'], "Lokasi ditemukan : $latitude , $longitude");
 
                 // or we can use replyMessage() instead to send reLaply message
                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
