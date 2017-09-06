@@ -17,7 +17,6 @@ $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
 $channelAccessToken = '4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=';
 $channelSecret = 'd7b1e75f288adbbca55bf606175bd2bc';
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-$replyToken = $client->parseEvents()[0]['replyToken'];
 $message 	= $client->parseEvents()[0]['message'];
 $pesan_datang = strtolower($message['text']);
 
@@ -85,9 +84,16 @@ if(is_array($data['events'])){
             if($event2['message']['type'] == 'text')
             {
 				if($pesan_masuk == "rumah sakit"){
-	
-				$result = $bot->replyText($event2['replyToken'], "Bisa luuuuuuu");
-				return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+				$replyToken = $event2['replyToken'];
+				$balas = array(
+							'replyToken' => $replyToken,														
+							'messages' => array(
+								array(
+										'type' => 'text',					
+										'text' => 'halooooo'
+									)
+							)
+						);
 				
 }
 }
