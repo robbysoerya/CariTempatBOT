@@ -85,8 +85,8 @@ if(is_array($data['events'])){
             {
 				if($pesan_masuk == "rumah sakit"){
 					
-					$outputText = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("Eiffel Tower");
-					$result = $bot->replyMessage($event2['replyToken'], $outputText);
+					
+					$result = $bot->replyText($event2['replyToken'], "halo");
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
