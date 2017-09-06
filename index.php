@@ -85,7 +85,7 @@ if(is_array($data['events'])){
             {
 				if($pesan_masuk == "rumah sakit"){
 					
-					$result = $bot->replyLocation($event2['replyToken'], 'Halo','〒150-0002 東京都渋谷区渋谷２丁目２１−１',35.65910807942215,139.70372892916203);
+					$result = $bot->replyLocation($event2['replyToken'], 'location','Halo','〒150-0002 東京都渋谷区渋谷２丁目２１−１',35.65910807942215,139.70372892916203);
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
