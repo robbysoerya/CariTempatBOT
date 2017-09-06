@@ -60,74 +60,17 @@ if(is_array($data['events'])){
     {
         if ($event['type'] == 'message')
         {
-            if($event['message']['type'] == 'text')
-
+            if($event['message']['type'] == 'location')
             {
-				
-		$get_sub = array();
-		$aa = array(
                 // send same message as reply to user
-						'title' => 'my location',
-						'address' => '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
-						'latitude' => 35.65910807942215,
-						'longitude' => 139.70372892916203,
-			);
-		}
+                $result = $bot->replyMessage($event['replyToken'], $event['message']['location']);
 
-array_push($get_sub,$aa);
-		
-		$get_sub[] = array(
-					
-					 'type' => 'text',
-					 'text' => 'Lokasi diterima'
-		);
-		
-		$result = array(
-					'replyToken' 	=> $replyToken,														
-					'messages' 		=> $get_sub
-				 );	
-				
-	}
                 // or we can use replyMessage() instead to send reply message
-         
+                // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
                 // $result = $bot->replyMessage($event['replyToken'], $textMessageBuilder);
 
                 return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
             }
-
-if(
-    $event['message']['type'] == 'image'
-){
-    $basePath  = $request->getUri()->getBaseUrl();
-    $contentURL  = $basePath."/content/".$event['message']['id'];
-    $contentType = ucfirst($event['message']['type']);
-    $result = $bot->replyText($event['replyToken'],
-        $contentType. " yang kamu kirim bisa diakses dari link:\n " . $contentURL);
-
-    return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
-}
         }
-    });
-
-$app->get('/profile', function($req, $res) use ($bot)
-{
-    // get user profile
-    $userId = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-    $result = $bot->getProfile($userId);
-   
-    return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
-});
-
-$app->get('/content/{messageId}', function($req, $res) use ($bot)
-{
-    // get message content
-    $route      = $req->getAttribute('route');
-    $messageId = $route->getArgument('messageId');
-    $result = $bot->getMessageContent($messageId);
-
-    // set response
-    $res->write($result->getRawBody());
-
-    return $res->withHeader('Content-Type', $result->getHeader('Content-Type'));
-});
-$app->run();
+    }
+}
