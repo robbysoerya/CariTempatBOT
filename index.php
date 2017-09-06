@@ -66,7 +66,7 @@ if(is_array($data['events'])){
             {
                 // send same message as reply to user
          
-                $result = $bot.replyLocation(REPLY_TOKEN, {
+                $result = $bot.replyLocation($event['replyToken'], {
   title: 'my location',
   address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
   latitude: 35.65910807942215,
