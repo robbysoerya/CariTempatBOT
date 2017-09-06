@@ -126,14 +126,13 @@ if($message['type']=='text')
     
 
 	
-
+}
 $result2 =  json_encode($balas);
 
 file_put_contents('./lokasi.json',$result2);
 
 $client->replyMessage($balas);
 
-}
 }
 );
 
