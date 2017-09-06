@@ -69,7 +69,7 @@ if(is_array($data['events'])){
          
                 // send same message as reply to user
          
-				$locationMessageBuilder = new LocationMessageBuilder($event['message']['location']);
+				$locationMessageBuilder = new LocationMessageBuilder("Eiffel Tower", "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France", 48.858328, 2.294750);
                 $result = $bot->replyMessage($event['replyToken'], $locationMessageBuilder);
 
                 // or we can use replyMessage() instead to send reply message
