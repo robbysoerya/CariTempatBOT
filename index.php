@@ -89,6 +89,9 @@ if(is_array($data['events'])){
 	if(is_array($lokasi['results'])){
     foreach ($lokasi['results'] as $results)
     {	
+		if ($lokasi['types'][0] == 'hospital')
+        {
+				
 		$title = $results[0]['name'];
 		$address = $results[0]['vicinity'];
 		$lat = $results[0]['geometry']['location']['lat'];
@@ -119,6 +122,7 @@ if(is_array($data['events'])){
     
 }
 	
+}
 $result2 =  json_encode($balas);
 
 file_put_contents('./lokasi.json',$result2);
