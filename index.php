@@ -80,7 +80,7 @@ if(is_array($data['events'])){
 					
 					if(is_array($lokasi['results'])){
 						foreach ($lokasi['results'] as $results){
-							if ($results[0]['type'] == 'hospital'){
+							if ($results[0]['types'][0] == 'hospital'){
 								$type = 'location';
 								$title = $results[0]['name'];
 								$address = $results[0]['formatted_address']; 
