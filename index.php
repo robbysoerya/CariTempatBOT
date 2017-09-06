@@ -69,7 +69,7 @@ if(is_array($data['events'])){
          
                 // send same message as reply to user
          
-				$textMessageBuilder = new TextMessageBuilder("Lokasi diterima");
+				$locationMessageBuilder = new LocationMessageBuilder($event['message']['location']);
                 $result = $bot->replyMessage($event['replyToken'], $locationMessageBuilder);
 
                 // or we can use replyMessage() instead to send reply message
