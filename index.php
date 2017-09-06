@@ -66,7 +66,7 @@ if(is_array($data['events'])){
             {
 				$latitude = $event['message']['latitude'];
 				$longitude = $event['message']['longitude'];
-
+				$geolocation = $latitude.','.$longitude;
                 // send same message as reply to user
                 $result = $bot->replyText($event['replyToken'], "Lokasi ditemukan : $latitude , $longitude");
                 // or we can use replyMessage() instead to send reLaply message
@@ -78,13 +78,12 @@ if(is_array($data['events'])){
         }
     }
 }
-
-
-	$geolocation = $latitude.','.$longitude;
+	
 	$request = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='.$geolocation.'&radius=5000&type=hospital&keyword=rumah+sakit&key=AIzaSyC7jWhmMD7bR6JmfG9B8qwbSVapdDoze3o'; 
 	$file_contents = file_get_contents($request);
 	$replyToken = $bot->parseEvents()[0]['replyToken'];
 	$lokasi = json_decode($file_contents);
+	file_put_contents('./balasan2.json',$file_contents);
 	
 	if(is_array($lokasi['results'])){
     foreach ($lokasi['results'] as $results)
