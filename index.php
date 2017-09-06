@@ -84,25 +84,11 @@ if(is_array($data['events'])){
             if($event2['message']['type'] == 'text')
             {
 				if($pesan_masuk == "rumah sakit"){
-				$replyToken = $event2['replyToken'];
-				$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'halooooo'
-									)
-							)
-						);
+					
+					$result = $bot->replyText($event2['replyToken'], "jhjgjgjh");
+					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
-
-$result2 =  json_encode($balas);
-
-file_put_contents('./balasan2.json',$result);
-
-
-$result3 = $bot->replyMessage($balas);
-return $response->withJson($result3->getJSONDecodedBody(), $result3->getHTTPStatus());
+				
 
 }
 }
