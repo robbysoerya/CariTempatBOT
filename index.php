@@ -85,8 +85,8 @@ if(is_array($data['events'])){
             {
 				if($pesan_masuk == "rumah sakit"){
 					
-					$locationMessageBuilder = new LocationMessageBuilder('Halo','〒150-0002 東京都渋谷区渋谷２丁目２１−１',35.65910807942215,139.70372892916203);
-					$result = $bot->replyMessage($event2['replyToken'], $locationMessageBuilder);
+					$outputText = new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("Eiffel Tower", "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France", 48.858328, 2.294750);
+					$result = $bot->replyMessage($event2['replyToken'], $outputText);
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
