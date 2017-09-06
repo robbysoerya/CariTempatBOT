@@ -72,25 +72,25 @@ if(is_array($data['events'])){
 }
 	
 
-else if($pesan_datang == "rumah sakit"){
+if($pesan_datang == "rumah sakit"){
 	
-	$balas = array(
-						'replyToken' => $replyToken,
-						'messages' => array(
-												array(
-														'type' => 'text',
-														'text' => 'bisa ngapa lu'
-														
-										)
-									)
-								);
+	if(is_array($data['events'])){
+		
+    foreach ($data['events'] as $event)
+    {		
+        if ($event['type'] == 'message')
+        {
+            if($event['message']['type'] == 'text')
+            {
+	
+				$result = $bot->replyText($event['replyToken'], "Bisa luuuuuuu");
+				return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
+				
 }
-$result2 =  json_encode($balas);
-
-file_put_contents('./lokasi.json',$result2);
-
-$client->replyMessage($balas);
-
+}
+}
+}
+}
 }
 );
 
