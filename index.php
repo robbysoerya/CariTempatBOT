@@ -86,7 +86,8 @@ if(is_array($data['events'])){
 				if($pesan_masuk == "rumah sakit"){
 					
 					
-					$result = $bot->replyText($event2['replyToken'], "halo");
+					$outputText = new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder("Eiffel Tower", "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France", 48.858328, 2.294750);
+					$response = $bot->replyMessage($event->getReplyToken(), $outputText);
 					return $response->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 				
 				
