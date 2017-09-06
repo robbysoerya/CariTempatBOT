@@ -13,13 +13,6 @@ use \LINE\LINEBot\SignatureValidator as SignatureValidator;
 $channel_access_token = "4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=";
 $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
 
-
-$channelAccessToken = '4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=';
-$channelSecret = 'd7b1e75f288adbbca55bf606175bd2bc';
-$client = new LINEBotTiny($channelAccessToken, $channelSecret);
-$message 	= $client->parseEvents()[0]['message'];
-$pesan_datang = strtolower($message['text']);
-
 // inisiasi objek bot
 $httpClient = new CurlHTTPClient($channel_access_token);
 $bot = new LINEBot($httpClient, ['channelSecret' => $channel_secret]);
@@ -53,7 +46,7 @@ if(is_array($data['events'])){
     {		
         if ($event['type'] == 'message')
         {
-            if($event['message']['type'] == 'location')
+            if($event['message']['type'] == 'text')
             {
 				$latitude = $event['message']['latitude'];
 				$longitude = $event['message']['longitude'];
