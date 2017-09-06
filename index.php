@@ -61,13 +61,13 @@ if(is_array($data['events'])){
     {
         if ($event['type'] == 'message')
         {
-            if($event['message']['type'] == 'location')
+            if($event['message']['type'] == 'text')
 
             {
 
 
                 // send same message as reply to user
-                $result = $bot->replyText($event['replyToken'], $event['message']['location']);
+                $result = $bot->replyText($event['replyToken'], $event['message']['text']);
 
                 // or we can use replyMessage() instead to send reply message
                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
@@ -77,7 +77,7 @@ if(is_array($data['events'])){
             }
 
 if(
-    $event['message']['type'] == 'location'
+    $event['message']['type'] == 'image'
 ){
     $basePath  = $request->getUri()->getBaseUrl();
     $contentURL  = $basePath."/content/".$event['message']['id'];
