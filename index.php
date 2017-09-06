@@ -16,9 +16,8 @@ $channel_access_token = "4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX
 $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
 
 // inisiasi objek bot
-$httpClient = new CurlHTTPClient($channel_access_token);
-$bot = new LINEBot($httpClient, ['channelSecret' => $channel_secret]);
-
+$bot = new LINEBot($channel_access_token, $channel_secret);
+$replyToken = $bot->parseEvents()[0]['replyToken'];
 $configs =  [
     'settings' => ['displayErrorDetails' => true],
 ];
@@ -68,11 +67,12 @@ if(is_array($data['events'])){
 		$get_sub = array();
 		$aa = array(
                 // send same message as reply to user
-  'title' => 'my location',
-  'address' => '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
-  'latitude' => 35.65910807942215,
-  'longitude' => 139.70372892916203,
-);
+						'title' => 'my location',
+						'address' => '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
+						'latitude' => 35.65910807942215,
+						'longitude' => 139.70372892916203,
+			);
+		}
 
 array_push($get_sub,$aa);
 		
@@ -107,8 +107,7 @@ if(
     return $res->withJson($result->getJSONDecodedBody(), $result->getHTTPStatus());
 }
         }
-    }
-});
+    });
 
 $app->get('/profile', function($req, $res) use ($bot)
 {
