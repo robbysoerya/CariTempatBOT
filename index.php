@@ -72,7 +72,7 @@ if(is_array($data['events'])){
 }
 	
 
-if($pesan_datang == "rumah sakit"){
+else if($pesan_datang == "rumah sakit"){
 	
 	$balas = array(
 						'replyToken' => $replyToken,
