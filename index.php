@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-
+require_once('./line_class.php');
 use \LINE\LINEBot;
 use \LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use \LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
@@ -14,6 +14,13 @@ $pass_signature = true;
 // set LINE channel_access_token and channel_secret
 $channel_access_token = "4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=";
 $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
+
+
+$channelAccessToken = '4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=';
+$channelSecret = 'd7b1e75f288adbbca55bf606175bd2bc';
+$client = new LINEBotTiny($channelAccessToken, $channelSecret);
+$replyToken = $client->parseEvents()[0]['replyToken'];
+$pesan_datang = strtolower($message['text']);
 
 // inisiasi objek bot
 $httpClient = new CurlHTTPClient($channel_access_token);
@@ -78,10 +85,6 @@ if(is_array($data['events'])){
         }
     }
 }
-	$replyToken = $bot->parseEvents()[0]['replyToken'];
-	$message 	= $bot->parseEvents()[0]['message'];
-	$pesan_datang = strtolower($message['text']);
-	
 	
 if($message['type']=='text')
 {
@@ -129,7 +132,7 @@ $result2 =  json_encode($balas);
 
 file_put_contents('./lokasi.json',$result2);
 
-$bot->replyMessage($balas);
+$client->replyMessage($balas);
 
 }
 );
