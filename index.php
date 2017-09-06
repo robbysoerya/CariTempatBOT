@@ -61,13 +61,13 @@ if(is_array($data['events'])){
     {
         if ($event['type'] == 'message')
         {
-            if($event['message']['type'] == 'text')
+            if($event['message']['type'] == 'image')
 
             {
 
 
                 // send same message as reply to user
-                $result = $bot->replyText($event['replyToken'], $event['message']['text']);
+                $result = $bot->replyText($event['replyToken'], $event['message']['image']);
 
                 // or we can use replyMessage() instead to send reply message
                 // $textMessageBuilder = new TextMessageBuilder($event['message']['text']);
