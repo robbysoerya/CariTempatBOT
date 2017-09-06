@@ -64,12 +64,14 @@ if(is_array($data['events'])){
             if($event['message']['type'] == 'location')
 
             {
-
-
-         
                 // send same message as reply to user
          
-                $result = $bot->replyText($event['replyToken'], "Lokasi Diterima");
+                $result = $bot->replyLocation($event['replyToken'], {
+  title: 'my location',
+  address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
+  latitude: 35.65910807942215,
+  longitude: 139.70372892916203,
+});
 
                 // or we can use replyMessage() instead to send reply message
          
