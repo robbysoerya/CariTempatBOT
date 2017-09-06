@@ -9,8 +9,6 @@ use \LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
 use \LINE\LINEBot\SignatureValidator as SignatureValidator;
 
 // set false for production
-$pass_signature = true;
-
 // set LINE channel_access_token and channel_secret
 $channel_access_token = "4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f/mAcPMNcNpHaLz7eoJCTjQXiiRB8YJrVqsAr3IeeDqGtENP6aE9S40HhWDzwGWTpRCfbMAD1obzedMo0dNkUY5ZBn7RZQdB04t89/1O/w1cDnyilFU=";
 $channel_secret = "d7b1e75f288adbbca55bf606175bd2bc";
@@ -20,6 +18,7 @@ $channelAccessToken = '4naib3sEwmqONsibs3zg3/wXWyxha+MJK+vfbsed7GtFGPs82rT/muX+f
 $channelSecret = 'd7b1e75f288adbbca55bf606175bd2bc';
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 $replyToken = $client->parseEvents()[0]['replyToken'];
+$message 	= $client->parseEvents()[0]['message'];
 $pesan_datang = strtolower($message['text']);
 
 // inisiasi objek bot
@@ -43,24 +42,6 @@ $app->post('/webhook', function ($request, $response) use ($bot, $pass_signature
     // get request body and line signature header
     $body        = file_get_contents('php://input');
     $request = file_get_contents('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-6.357712,106.842937&radius=5000&type=hospital&keyword=rumah+sakit&key=AIzaSyC7jWhmMD7bR6JmfG9B8qwbSVapdDoze3o'); 
-    
-    $signature = isset($_SERVER['HTTP_X_LINE_SIGNATURE']) ? $_SERVER['HTTP_X_LINE_SIGNATURE'] : '';
-
-    // log body and signature
-    file_put_contents('php://stderr', 'Body: '.$body);
-
-    if($pass_signature === false)
-    {
-        // is LINE_SIGNATURE exists in request header?
-        if(empty($signature)){
-            return $response->withStatus(400, 'Signature not set');
-        }
-
-        // is this request comes from LINE?
-        if(! SignatureValidator::validateSignature($body, $channel_secret, $signature)){
-            return $response->withStatus(400, 'Invalid signature');
-        }
-    }
 
     // kode aplikasi nanti disini
 	$data = json_decode($body, true);
